@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Mhoward1934/FriendFinder#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "router": "^1.3.3"
   }
 }
