@@ -1,7 +1,5 @@
 var express = require("express");
 var path = require("path");
-var apiRoutes = require("./app/routing/apiRoutes");
-var htmlRoutes = require("./app/routing/htmlRoutes");
 
 var app = express();
 
@@ -10,11 +8,15 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static("public"));
-app.use("./htmlRoutes", htmlRoutes);
-app.use("./apiRoutes", apiRoutes);
+app.use(express.static("app/public"));
+// app.use("./app/routing/apiRoutes")(app);
+// app.use("./app/routing/htmlRoutes")(app);
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, + '/../public/home.html'));
+});
 
 app.listen(PORT, function () {
-    console.log("App listening on PORT: " + PORT);
+    console.log("App listening on PORT: http://localhost:" + PORT);
 });
 
