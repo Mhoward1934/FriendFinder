@@ -18,14 +18,15 @@ module.exports = function (app) {
             friendDifference: 1000
         };
 
-        var newData = newData.scores;
+        var newData = req.body;
+        var newDataScore = newData.score;
         // the total difference starts off at 0 
         var totalDifference = 0;
 
         //loop through all of question values and sum total their subtracted absolute values
         for (var j = 0; j < userData[i].scores[j]; j++) {
             // this adds the numerical answers of each friend to the total difference; then uses the absolute value to determine the difference between the two (absolute value is used so that 5-3 and 3-5 both equal 2)
-            totalDifference += Math.abs(parseInt(newData[j]) - parseInt(userData[i].scores[j]));
+            totalDifference += Math.abs(parseInt(newDataScore[j]) - parseInt(userData[i].scores[j]));
         }
 
         // If the sum of differences is less then the differences of the current "best match"
@@ -37,8 +38,8 @@ module.exports = function (app) {
             bestMatch.friendDifference = totalDifference;
             $("#results-modal").modal("toggle");
         }
+        userData.push(newData);
     });
 
-data.push(newData);
 
 };

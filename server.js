@@ -9,12 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("app/public"));
-// app.use("./app/routing/apiRoutes")(app);
-// app.use("./app/routing/htmlRoutes")(app);
-
-app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, + '/../public/home.html'));
-});
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 app.listen(PORT, function () {
     console.log("App listening on PORT: http://localhost:" + PORT);
